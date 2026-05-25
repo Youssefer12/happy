@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد ميلاد سعيد يا غالية ✨</title>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fff0f3, #ffccd5);
+            font-family: 'Cairo', sans-serif;
+            text-align: center;
+            color: #4a4a4a;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 71, 126, 0.15);
+            border: 2px solid #ffb3c6;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ff477e;
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+        }
+
+        .name-box {
+            font-size: 2.2rem;
+            color: #d9a05b;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* الدبدوب */
+        .teddy-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 30px auto;
+            background: #e6ccb2;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+        .teddy-container::before, .teddy-container::after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: #e6ccb2;
+            border-radius: 50%;
+            top: -5px;
+        }
+        .teddy-container::before { left: -5px; }
+        .teddy-container::after { right: -5px; }
+        .inner-ear {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #ffb3c6;
+            border-radius: 50%;
+            top: 2px;
+        }
+        .ie-l { left: 4px; }
+        .ie-r { right: 4px; }
+        .eyes {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #2b2d42;
+            border-radius: 50%;
+            top: 40px;
+        }
+        .eye-l { left: 30px; }
+        .eye-r { right: 30px; }
+        .snout {
+            position: absolute;
+            width: 36px;
+            height: 28px;
+            background: #fff;
+            border-radius: 50%;
+            top: 60px;
+            left: 42px;
+        }
+        .nose {
+            position: absolute;
+            width: 14px;
+            height: 9px;
+            background: #2b2d42;
+            border-radius: 50%;
+            top: 65px;
+            left: 53px;
+        }
+        .smile {
+            position: absolute;
+            width: 16px;
+            height: 8px;
+            border-bottom: 2px solid #2b2d42;
+            border-radius: 50%;
+            top: 73px;
+            left: 52px;
+        }
+        .teddy-heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #ff477e;
+            transform: rotate(-45deg);
+            bottom: -5px;
+            left: 45px;
+            animation: pulse 0.6s infinite alternate;
+        }
+        .teddy-heart::before, .teddy-heart::after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            background: #ff477e;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .teddy-heart::before { top: -15px; left: 0; }
+        .teddy-heart::after { top: 0; left: 15px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse {
+            to { transform: scale(1.1) rotate(-45deg); }
+        }
+
+        /* المديح بالدارجة */
+        .madh-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 30px 15px;
+            padding: 20px;
+            color: #5c3d48;
+            background: #fff5f6;
+            border-radius: 15px;
+            border-right: 4px solid #ff477e;
+            border-left: 4px solid #ff477e;
+            direction: rtl;
+        }
+
+        /* سيكسيون الباك */
+        .bac-section {
+            margin: 30px 15px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff9db, #fff3bf);
+            border-radius: 15px;
+            border: 2px dashed #f59f00;
+            direction: rtl;
+            box-shadow: 0 5px 15px rgba(245, 159, 0, 0.1);
+        }
+        .bac-title {
+            font-size: 1.4rem;
+            color: #f59f00;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .bac-text {
+            font-size: 1.2rem;
+            color: #92400e;
+            line-height: 1.6;
+        }
+
+        /* سيكسيون القلب السري */
+        .secret-container {
+            margin: 40px auto;
+            position: relative;
+        }
+        .secret-heart-btn {
+            font-size: 4.5rem;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.3s;
+            animation: heartWobble 2s infinite;
+            user-select: none;
+        }
+        .secret-heart-btn:hover {
+            transform: scale(1.2);
+        }
+        @keyframes heartWobble {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .secret-message {
+            display: none;
+            margin: 20px auto;
+            padding: 20px;
+            font-size: 1.3rem;
+            color: #d90429;
+            background: #fff;
+            border: 2px dashed #ff477e;
+            border-radius: 15px;
+            max-width: 80%;
+            box-shadow: 0 4px 15px rgba(255, 71, 126, 0.1);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            direction: rtl;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* بلاصة الفورم د الكادو */
+        .gift-form-container {
+            margin-top: 25px;
+            background: #fff0f3;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .gift-form-container p {
+            font-size: 1.1rem;
+            color: #ff477e;
+            font-weight: bold;
+            margin-top: 0;
+        }
+        .gift-input {
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #ffb3c6;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+        .gift-input:focus {
+            border-color: #ff477e;
+        }
+        .submit-btn {
+            background: #ff477e;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            font-size: 1rem;
+            border-radius: 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 10px rgba(255, 71, 126, 0.2);
+        }
+        .submit-btn:hover {
+            background: #ff7096;
+        }
+
+        /* أنيميشن القلوب الكبيرة */
+        .big-heart {
+            position: fixed;
+            z-index: 999;
+            pointer-events: none;
+            font-size: var(--size);
+            animation: flyUp var(--duration) ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes flyUp {
+            0% { transform: translate(0, 0) scale(0.5) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.9; }
+            100% { transform: translate(var(--x), var(--y)) scale(1.2) rotate(var(--rot)); opacity: 0; }
+        }
+
+        .love-footer {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5rem;
+            color: #ff477e;
+            margin-top: 40px;
+            animation: heartBeat 1.5s infinite;
+        }
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <h1>Happy Birthday</h1>
+        
+        <div class="name-box">✨ Douae - دعاء ✨</div>
+
+        <div class="teddy-container">
+            <div class="inner-ear ie-l"></div>
+            <div class="inner-ear ie-r"></div>
+            <div class="eyes eye-l"></div>
+            <div class="eyes eye-r"></div>
+            <div class="snout"></div>
+            <div class="nose"></div>
+            <div class="smile"></div>
+            <div class="teddy-heart"></div>
+        </div>
+
+        <div class="madh-text">
+            اليوم عيد ميلاد أغلى وأعز إنسانة عندي في الدنيا. ❤️<br>
+            الضحكة ديالك كتضوي العالم، والطيبة اللي في قلبك ما كاينش بحالها.<br>
+            كبرتي وكبرت غلاوتك فقلبي، وكل عام ونتي فرحة حياتي، وديما ضاحكة ومنورة لي طريقي. الله يخليك ليا. 🌸✨
+        </div>
+
+        <!-- بارتي الإنجاز ديال الباك -->
+        <div class="bac-section">
+            <div class="bac-title">ركن الذكريات والإنجازات 🎓✨</div>
+            <div class="bac-text">
+                منقدرش ندوز هاد النهار بلا ما نتفكر بلي نتي وحدة من أعضم البنات للي كنعرف! <br>
+                ديك الساعات فاش كنتي كتقاتلي وتسهري.. <strong>الباك غاتيجيبيه صحة حيت نتي قدها وقدود!</strong> 💪🔥 <br>
+                تبارك الله عليك وديما طوب.
+            </div>
+        </div>
+
+        <!-- سيكسيون القلب السري -->
+        <div class="secret-container">
+            <div class="secret-heart-btn" onclick="revealSecret(event)">❤️</div>
+            <p style="color: #ff7096; font-weight: bold; margin-top: 5px;">كليكي على هاد القليب، كاين كادو سري ليك هنا...</p>
+            
+            <div id="secretMessage" class="secret-message">
+                "مبارك عليك 18 سنة يا أحلى وأجمل بنت فالدنيا! 🎉✨<br>
+                الضحكة ديالك هي كلشي وعيد ميلادك هو أحسن نهار عندي! أنا ديما معاك وجنبك." 💖🌟
+
+                <!-- فورم إرسال الكادو -->
+                <div class="gift-form-container">
+                    <p>🎁 شنو هو الكادو للي عاجبك ومخبا فخاطرك؟:</p>
+                    <input type="text" id="userGift" class="gift-input" placeholder="مثلا: خاتم، كتاب، عشا، شي حاجة زوينة...">
+                    <br>
+                    <button class="submit-btn" onclick="sendGiftEmail()">صيفطيها ليا ✨</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="love-footer">
+            I Love You
+        </div>
+
+    </div>
+
+    <script>
+        (function(){
+            emailjs.init("bFH6ZxbDqnq5yUiaJ"); 
+        })();
+
+        function revealSecret(event) {
+            var msg = document.getElementById("secretMessage");
+            if (msg.style.display === "none" || msg.style.display === "") {
+                msg.style.display = "block";
+                createBigHearts(event.clientX, event.clientY);
+            } else {
+                msg.style.display = "none";
+            }
+        }
+
+        function createBigHearts(clickX, clickY) {
+            for (var i = 0; i < 15; i++) {
+                var heart = document.createElement("div");
+                heart.className = "big-heart";
+                heart.innerHTML = "❤️";
+                heart.style.left = clickX + "px";
+                heart.style.top = clickY + "px";
+                
+                var x = (Math.random() - 0.5) * window.innerWidth * 0.8;
+                var y = -(Math.random() * window.innerHeight * 0.7 + 100);
+                var size = (Math.random() * 2 + 2) + "rem";
+                var duration = (Math.random() * 1.5 + 1.5) + "s";
+                var rot = (Math.random() - 0.5) * 60 + "deg";
+                
+                heart.style.setProperty('--x', x + 'px');
+                heart.style.setProperty('--y', y + 'px');
+                heart.style.setProperty('--size', size);
+                heart.style.setProperty('--duration', duration);
+                heart.style.setProperty('--rot', rot);
+                
+                document.body.appendChild(heart);
+                setTimeout((function(el) { return function() { el.remove(); }; })(heart), 3000);
+            }
+        }
+
+        function sendGiftEmail() {
+            var giftValue = document.getElementById("userGift").value;
+            if(giftValue.trim() === "") {
+                alert("كتبي شي حاجة بعدا عاد صيفطي! 🌸");
+                return;
+            }
+
+            var serviceID = "service_asq4pyy";
+            var templateID = "template_8nuqc4n";
+
+            // jbna l-waqt b l-gand d l-Maghrib mriqel
+            var options = { timeZone: 'Africa/Casablanca', hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+            var current_time = new Date().toLocaleString('fr-FR', options);
+
+            // had l-parameters homa lli ghadi ikhdmou f dynamic templates dyal EmailJS
+            var templateParams = {
+                name: "Douae",
+                message: giftValue,
+                time: current_time
+            };
+
+            emailjs.send(serviceID, templateID, templateParams)
+                .then(function(response) {
+                    alert("توصلت بيها يا غالية! 💖");
+                }, function(error) {
+                    alert("وقع مشكل صغير، ولكن هانيا غيوصلني الميساج!");
+                });
+        }
+    </script>
+
+</body>
+</html>
